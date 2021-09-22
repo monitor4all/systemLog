@@ -12,6 +12,7 @@ public class QueueLogServiceImpl implements LogService {
     @Override
     public boolean createLog(LogDTO logDTO) {
         log.info("LogDTO [{}]", logDTO);
+        // TODO 消息队列处理逻辑
         return true;
     }
 }

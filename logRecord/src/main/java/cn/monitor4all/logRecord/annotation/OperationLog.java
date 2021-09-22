@@ -8,13 +8,17 @@ import java.lang.annotation.Target;
 /**
  * @author yangzhendong
  */
-@Target({ ElementType.PARAMETER, ElementType.METHOD })
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OperationLog {
 
-    /**
-     * 描述业务操作
-     * @return
-     */
-    String description() default "";
+    String bizId();
+
+    String bizType();
+
+    String note() default "";
+
+    DataPipelineEnum pipeline();
+
+    String topicName() default "";
 }

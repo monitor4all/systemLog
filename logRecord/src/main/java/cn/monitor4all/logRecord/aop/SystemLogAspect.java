@@ -24,7 +24,6 @@ public class SystemLogAspect {
 
     @After("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
     public void doAfter(JoinPoint joinPoint) {
-        log.info("operationLogAspect doAfter");
     }
 
     @AfterThrowing(pointcut = "@annotation(cn.monitor4all.logRecord.annotation.OperationLog)", throwing = "e")
