@@ -16,10 +16,6 @@ public class SystemLogAspect {
     @Autowired
     private LogService logService;
 
-    @Pointcut("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
-    public void pointcut() {
-    }
-
     @Before("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
     public void doBefore(JoinPoint joinPoint){
         log.info("operationLogAspect doBefore");
