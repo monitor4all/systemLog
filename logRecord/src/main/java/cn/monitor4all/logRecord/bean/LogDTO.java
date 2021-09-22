@@ -3,17 +3,10 @@ package cn.monitor4all.logRecord.bean;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
-/**
- * 日志类-记录用户操作行为
- * @author lin.r.x
- *
- */
-public class LogDTO implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class LogDTO {
 	
 	private String logId;			//日志主键	
 	private String type;			//日志类型	
