@@ -22,20 +22,17 @@ public class SystemLogAspect {
 
     @Before("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
     public void doBefore(JoinPoint joinPoint){
-        System.out.println("operationLogAspect");
         log.info("operationLogAspect doBefore");
         logService.createLog(new LogDTO());
     }
 
     @After("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
     public void doAfter(JoinPoint joinPoint) {
-        System.out.println("operationLogAspect");
         log.info("operationLogAspect doAfter");
     }
 
     @AfterThrowing(pointcut = "@annotation(cn.monitor4all.logRecord.annotation.OperationLog)", throwing = "e")
     public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        System.out.println("operationLogAspect");
         log.info("operationLogAspect doAfterThrowing");
     }
 }

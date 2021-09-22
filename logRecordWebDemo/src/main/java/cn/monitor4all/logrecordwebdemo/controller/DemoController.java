@@ -14,7 +14,6 @@ public class DemoController {
     private DemoService demoService;
 
     @RequestMapping("/login")
-    @OperationLog
     public String login() throws Exception {
         return demoService.login() ? "yes" : "no";
     }

@@ -10,7 +10,7 @@ public class DemoService {
      * 模拟登陆逻辑
      */
     @OperationLog
-    public boolean login() {
-        return false;
+    public boolean login() throws Exception {
+        throw new Exception();
     }
 }
