@@ -9,7 +9,7 @@
         <version>2.5.1</version>
     </parent>
     <groupId>cn.monitor4all</groupId>
-    <artifactId>logRecord</artifactId>
+    <artifactId>log-record</artifactId>
     <version>1.0.0</version>
 
     <dependencies>
@@ -26,6 +26,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.20</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.72</version>
         </dependency>
     </dependencies>
 

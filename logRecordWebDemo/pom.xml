@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.monitor4all</groupId>
-            <artifactId>logRecord</artifactId>
+            <artifactId>log-record</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

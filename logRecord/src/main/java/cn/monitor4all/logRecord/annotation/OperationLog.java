@@ -16,9 +16,9 @@ public @interface OperationLog {
 
     String bizType();
 
-    String note() default "";
+    String msg() default "";
+
+    String tag() default "operation";
 
     DataPipelineEnum pipeline();
-
-    String topicName() default "";
 }

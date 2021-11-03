@@ -1,0 +1,52 @@
+{
+  "groups": [
+    {
+      "name": "log-record",
+      "type": "cn.monitor4all.logRecord.configuration.LogProperties",
+      "sourceType": "cn.monitor4all.logRecord.configuration.LogProperties"
+    },
+    {
+      "name": "log-record.meta-q-log",
+      "type": "cn.monitor4all.logRecord.configuration.LogProperties$MetaQLog",
+      "sourceType": "cn.monitor4all.logRecord.configuration.LogProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "log-record.meta-q-log.daily",
+      "type": "java.lang.String",
+      "description": "metaQ daily env",
+      "sourceType": "cn.monitor4all.logRecord.configuration.LogProperties$MetaQLog",
+      "defaultValue": ""
+    },
+    {
+      "name": "log-record.meta-q-log.group",
+      "type": "java.lang.String",
+      "description": "metaQ consumer group name",
+      "sourceType": "cn.monitor4all.logRecord.configuration.LogProperties$MetaQLog",
+      "defaultValue": ""
+    },
+    {
+      "name": "log-record.meta-q-log.online",
+      "type": "java.lang.String",
+      "description": "metaQ online env",
+      "sourceType": "cn.monitor4all.logRecord.configuration.LogProperties$MetaQLog",
+      "defaultValue": ""
+    },
+    {
+      "name": "log-record.meta-q-log.pre",
+      "type": "java.lang.String",
+      "description": "metaQ pre env",
+      "sourceType": "cn.monitor4all.logRecord.configuration.LogProperties$MetaQLog",
+      "defaultValue": ""
+    },
+    {
+      "name": "log-record.meta-q-log.topic",
+      "type": "java.lang.String",
+      "description": "metaQ producer topic name",
+      "sourceType": "cn.monitor4all.logRecord.configuration.LogProperties$MetaQLog",
+      "defaultValue": ""
+    }
+  ],
+  "hints": []
+}
