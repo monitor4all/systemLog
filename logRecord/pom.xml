@@ -9,7 +9,7 @@
         <version>2.5.1</version>
     </parent>
     <groupId>cn.monitor4all</groupId>
-    <artifactId>log-record</artifactId>
+    <artifactId>log-record-starter</artifactId>
     <version>1.0.0</version>
 
     <dependencies>

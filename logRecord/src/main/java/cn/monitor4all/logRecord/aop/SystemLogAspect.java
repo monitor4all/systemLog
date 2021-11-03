@@ -93,17 +93,6 @@ public class SystemLogAspect {
         }
     }
 
-    @After("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
-    public void doAfter(JoinPoint joinPoint) {
-        try {
-            LogDTO logDTO = logDTOThreadLocal.get();
-            logService.createLog(logDTO);
-            logDTOThreadLocal.remove();
-        } catch (Exception e) {
-            log.error("OperationLog doAfter error", e);
-        }
-    }
-
     @Around("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable{
         Object result;
@@ -115,6 +104,11 @@ public class SystemLogAspect {
             logDTO.setException(throwable.getMessage());
             logDTOThreadLocal.set(logDTO);
             throw throwable;
+        }
+        finally {
+            LogDTO logDTO = logDTOThreadLocal.get();
+            logService.createLog(logDTO);
+            logDTOThreadLocal.remove();
         }
         return result;
     }
