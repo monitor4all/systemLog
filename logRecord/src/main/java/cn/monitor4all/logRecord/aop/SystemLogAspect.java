@@ -25,7 +25,9 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Aspect
@@ -36,78 +38,90 @@ public class SystemLogAspect {
     @Autowired
     private LogService logService;
 
-    private static final ThreadLocal<LogDTO> logDTOThreadLocal = new NamedThreadLocal<>("ThreadLocal logDTO");
+    private static final ThreadLocal<List<LogDTO>> logDTOThreadLocal = new NamedThreadLocal<>("ThreadLocal logDTOList");
 
     private SpelExpressionParser parser = new SpelExpressionParser();
 
     private DefaultParameterNameDiscoverer discoverer = new DefaultParameterNameDiscoverer();
 
-    @Before("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
+    @Before("@annotation(cn.monitor4all.logRecord.annotation.OperationLog) || @annotation(cn.monitor4all.logRecord.annotation.OperationLogs)")
     public void doBefore(JoinPoint joinPoint){
         try {
-            // 放在最前防止下方逻辑执行异常
-            LogDTO logDTO = new LogDTO();
-            logDTOThreadLocal.set(logDTO);
-            //用的最多通知的签名
-            Signature signature = joinPoint.getSignature();
-            MethodSignature methodSignature = (MethodSignature) signature;
-            Object target = joinPoint.getTarget();
-            //获取注解标注的方法
-            Method method = target.getClass().getMethod(methodSignature.getName(), methodSignature.getParameterTypes());
-            //通过方法获取注解
-            OperationLog annotation = method.getAnnotation(OperationLog.class);
-            // 解析Spel表达式
-            String[] params = discoverer.getParameterNames(method);
-            //获取方法的实际参数值
+            List<LogDTO> logDTOList = new ArrayList<>();
+            logDTOThreadLocal.set(logDTOList);
+
             Object[] arguments = joinPoint.getArgs();
-            EvaluationContext context = new StandardEvaluationContext();
-            if (params != null) {
-                for (int len = 0; len < params.length; len++) {
-                    context.setVariable(params[len], arguments[len]);
+            Method method = getMethod(joinPoint);
+            OperationLog[] annotations = method.getAnnotationsByType(OperationLog.class);
+            for (OperationLog annotation: annotations) {
+                // 放在最前防止下方逻辑执行异常
+                LogDTO logDTO = new LogDTO();
+                logDTOList.add(logDTO);
+                // 解析Spel表达式
+                String[] params = discoverer.getParameterNames(method);
+                //获取方法的实际参数值
+                EvaluationContext context = new StandardEvaluationContext();
+                if (params != null) {
+                    for (int len = 0; len < params.length; len++) {
+                        context.setVariable(params[len], arguments[len]);
+                    }
                 }
-            }
-            //解析表达式并获取spel的值
-            String bizIdSpel = annotation.bizId();
-            Expression bizIdExpression = parser.parseExpression(bizIdSpel);
-            String bizId = bizIdExpression.getValue(context, String.class);
+                //解析表达式并获取spel的值
+                String bizIdSpel = annotation.bizId();
+                Expression bizIdExpression = parser.parseExpression(bizIdSpel);
+                String bizId = bizIdExpression.getValue(context, String.class);
 
-            String msgSpel = annotation.msg();
-            String msg = null;
-            if (StringUtils.isNotBlank(msgSpel)) {
-                Expression msgExpression = parser.parseExpression(msgSpel);
-                Object msgObj = msgExpression.getValue(context, Object.class);
-                msg = JSON.toJSONString(msgObj, SerializerFeature.WriteMapNullValue);
-            }
+                String msgSpel = annotation.msg();
+                String msg = null;
+                if (StringUtils.isNotBlank(msgSpel)) {
+                    Expression msgExpression = parser.parseExpression(msgSpel);
+                    Object msgObj = msgExpression.getValue(context, Object.class);
+                    msg = JSON.toJSONString(msgObj, SerializerFeature.WriteMapNullValue);
+                }
 
-            // 写入LogDTO
-            logDTO.setLogId(UUID.randomUUID().toString());
-            logDTO.setSuccess(true);
-            logDTO.setBizId(bizId);
-            logDTO.setBizType(annotation.bizType());
-            logDTO.setOperateDate(new Date());
-            logDTO.setMsg(msg);
-            logDTO.setTag(annotation.tag());
+                // 写入LogDTO
+                logDTO.setLogId(UUID.randomUUID().toString());
+                logDTO.setSuccess(true);
+                logDTO.setBizId(bizId);
+                logDTO.setBizType(annotation.bizType());
+                logDTO.setOperateDate(new Date());
+                logDTO.setMsg(msg);
+                logDTO.setTag(annotation.tag());
+            }
 
         } catch (Exception e) {
             log.error("OperationLog doBefore error", e);
         }
     }
 
-    @Around("@annotation(cn.monitor4all.logRecord.annotation.OperationLog)")
+    protected Method getMethod(JoinPoint joinPoint) {
+        Method method = null;
+        try {
+            Signature signature = joinPoint.getSignature();
+            MethodSignature ms = (MethodSignature) signature;
+            Object target = joinPoint.getTarget();
+            method = target.getClass().getMethod(ms.getName(), ms.getParameterTypes());
+        } catch (NoSuchMethodException e) {
+            log.error("getMethod error", e);
+        }
+        return method;
+    }
+
+    @Around("@annotation(cn.monitor4all.logRecord.annotation.OperationLog) || @annotation(cn.monitor4all.logRecord.annotation.OperationLogs)")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable{
         Object result;
         try {
             result = pjp.proceed();
         } catch (Throwable throwable) {
-            LogDTO logDTO = logDTOThreadLocal.get();
-            logDTO.setSuccess(false);
-            logDTO.setException(throwable.getMessage());
-            logDTOThreadLocal.set(logDTO);
+            List<LogDTO> logDTOList = logDTOThreadLocal.get();
+            logDTOList.forEach(logDTO -> {
+                logDTO.setSuccess(false);
+                logDTO.setException(throwable.getMessage());
+            });
             throw throwable;
-        }
-        finally {
-            LogDTO logDTO = logDTOThreadLocal.get();
-            logService.createLog(logDTO);
+        } finally {
+            List<LogDTO> logDTOList = logDTOThreadLocal.get();
+            logDTOList.forEach(logDTO -> logService.createLog(logDTO));
             logDTOThreadLocal.remove();
         }
         return result;
