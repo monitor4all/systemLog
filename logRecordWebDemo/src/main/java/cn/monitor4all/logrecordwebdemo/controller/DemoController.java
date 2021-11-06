@@ -1,6 +1,5 @@
 package cn.monitor4all.logrecordwebdemo.controller;
 
-import cn.monitor4all.logRecord.annotation.OperationLog;
 import cn.monitor4all.logrecordwebdemo.domain.TestClass;
 import cn.monitor4all.logrecordwebdemo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
