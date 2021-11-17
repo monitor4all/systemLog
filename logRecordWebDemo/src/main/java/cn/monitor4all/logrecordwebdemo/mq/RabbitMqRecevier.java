@@ -18,6 +18,6 @@ public class RabbitMqRecevier {
 
     @RabbitHandler
     public void receiveMessage(String message) {
-        log.info("receiveMessage [{}]", message);
+        log.info("RabbitMqRecevier receiveMessage [{}]", message);
     }
 }

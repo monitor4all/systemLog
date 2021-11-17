@@ -6,7 +6,7 @@ import cn.monitor4all.logrecordwebdemo.domain.TestClass;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RabbitMqService {
+public class TestService {
 
     @OperationLog(bizId = "#testClass.testStr", bizType = "testType1", msg = "#testClass", pipeline = DataPipelineEnum.QUEUE)
     @OperationLog(bizId = "#testClass.testStr", bizType = "testType2", msg = "#testClass", pipeline = DataPipelineEnum.QUEUE)
