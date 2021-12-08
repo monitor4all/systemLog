@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 public class TestService {
 
     @OperationLog(bizId = "#testClass.testStr", bizType = "testType1", msg = "#testClass")
-    @OperationLog(bizId = "#testClass.testStr", bizType = "testType2", msg = "#testClass")
-    @OperationLog(bizId = "#testClass.testStr", bizType = "testType3", msg = "#testClass")
+    @OperationLog(bizId = "#isSuccess", bizType = "testType2", msg = "#testClass")
+    @OperationLog(bizId = "bizIdStr", bizType = "testType3", msg = "msgStr")
     public String testService(TestClass testClass, boolean isSuccess) throws Exception {
         if (isSuccess) {
             return testClass.toString();

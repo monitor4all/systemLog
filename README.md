@@ -6,6 +6,12 @@
 
 开源starter包目录：https://github.com/qqxx6661/logRecord
 
+## 使用方式
+
+https://github.com/qqxx6661/logRecord
+
+https://github.com/qqxx6661/logRecord/blob/master/README.md
+
 ## 配套文章
 
 如何使用注解优雅的记录操作日志 |《萌新学开源》01 
