@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RabbitListener(queues = "logrecord")
+@RabbitListener(queues = "logRecord")
 @ConditionalOnProperty(name = "listener.type", havingValue = "rabbitMq")
 public class RabbitMqRecevier {
 
