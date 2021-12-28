@@ -8,7 +8,7 @@
 
 ## 使用方式
 
-https://github.com/qqxx6661/logRecord
+详细使用方式请参考二方包完整文档
 
 https://github.com/qqxx6661/logRecord/blob/master/README.md
 
