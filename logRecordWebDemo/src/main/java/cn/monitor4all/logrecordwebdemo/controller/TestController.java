@@ -19,17 +19,19 @@ public class TestController {
     @GetMapping("/testSuccess")
     public String testSuccess() throws Exception {
         TestClass testClass = new TestClass();
+        testClass.setTestId(1L);
         testClass.setTestStr("str");
         testClass.setTestList(Arrays.asList("1","2","3"));
-        return testService.testService(testClass, true);
+        return testService.testServiceFunc1(testClass, true);
     }
 
     @GetMapping("/testFailure")
     public String testFailure() throws Exception {
         TestClass testClass = new TestClass();
+        testClass.setTestId(2L);
         testClass.setTestStr("str");
         testClass.setTestList(Arrays.asList("1","2","3"));
-        return testService.testService(testClass, false);
+        return testService.testServiceFunc1(testClass, false);
     }
 
 }

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * 继承CustomLogListener类，可直接获取logDTO日志，不依赖于配置消息队列
+ * 继承CustomLogListener类，可直接获取logDTO日志，不依赖于配置数据管道
  */
 @Slf4j
 @Component

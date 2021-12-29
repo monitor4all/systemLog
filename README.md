@@ -1,14 +1,12 @@
 # systemLog
 
-该仓库是我的开源starter包的演示项目，使用了SpringBoot，拉下代码直接部署运行
+该仓库是开源仓库logRecord的演示Demo项目，使用了SpringBoot，clone代码后直接运行。
 
-实现：使用注解优雅的记录系统日志，操作日志等，并通过数据管道传递至数据库，消息队列。
-
-开源starter包目录：https://github.com/qqxx6661/logRecord
+logRecord仓库地址：https://github.com/qqxx6661/logRecord
 
 ## 使用方式
 
-详细使用方式请参考二方包完整文档
+详细使用方式请参考仓库完整README
 
 https://github.com/qqxx6661/logRecord/blob/master/README.md
 
@@ -17,6 +15,10 @@ https://github.com/qqxx6661/logRecord/blob/master/README.md
 如何使用注解优雅的记录操作日志 |《萌新学开源》01 
 
 https://mp.weixin.qq.com/s/q2qmffH8t-ou2apOa6BiPQ
+
+如何提交自己的项目到Maven公共仓库 | 萌新学开源 02
+
+https://mp.weixin.qq.com/s/B9LA6be_cPAKACbZot_Nrg
 
 ## 关注我
 
