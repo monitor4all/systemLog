@@ -11,7 +11,7 @@ public class TestService {
     /**
      * 测试OperationLog
      */
-    @OperationLog(bizId = "#testClass.testId", bizType = "testType1", msg = "#testFunc(#testClass.testId)")
+    @OperationLog(bizId = "#testClass.testId", bizType = "testType1", msg = "#CustomFuctionClass_customFunction(#testClass.testId)")
     @OperationLog(bizId = "#testClass.testId", bizType = "testType2", msg = "'单纯的字符串'")
     @OperationLog(bizId = "#testClass.testId", bizType = "testType3", msg = "'用户将旧值' + #old + '更改为新值' + #testClass.testStr")
     public String testServiceFunc1(TestClass testClass, boolean isSuccess) throws Exception {

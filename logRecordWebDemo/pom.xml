@@ -30,18 +30,9 @@
         <dependency>
             <groupId>cn.monitor4all</groupId>
             <artifactId>log-record-starter</artifactId>
-            <version>1.0.7-SNAPSHOT</version>
+            <version>1.1.0</version>
         </dependency>
         <!--   应用其他依赖    -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>

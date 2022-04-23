@@ -1,7 +1,7 @@
 package cn.monitor4all.logrecordwebdemo.listener;
 
 import cn.monitor4all.logRecord.bean.LogDTO;
-import cn.monitor4all.logRecord.service.CustomLogListener;
+import cn.monitor4all.logRecord.service.IOperationLogGetService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class TestCustomLogListener extends CustomLogListener {
+public class TestCustomLogListener implements IOperationLogGetService {
 
     @Override
-    public void createLog(LogDTO logDTO) throws Exception {
+    public void createLog(LogDTO logDTO) {
         log.info("TestCustomLogListener 本地接收到日志 [{}]", logDTO);
     }
 }
