@@ -1,7 +1,7 @@
 package cn.monitor4all.logrecordwebdemo.function;
 
 
-import cn.monitor4all.logRecord.function.LogRecordFunc;
+import cn.monitor4all.logRecord.annotation.LogRecordFunc;
 import cn.monitor4all.logrecordwebdemo.service.TestService;
 import cn.monitor4all.logrecordwebdemo.util.SpringContextUtils;
 
