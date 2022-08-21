@@ -1,12 +1,14 @@
 # systemLog
 
-该仓库是开源仓库logRecord的演示Demo项目，使用了SpringBoot，clone代码后直接运行。
+该仓库是开源仓库logRecord的演示Demo项目，使用了SpringBoot，clone代码后直接本地运行。
 
-logRecord仓库地址：https://github.com/qqxx6661/logRecord
+logRecord仓库地址：
+
+https://github.com/qqxx6661/logRecord
 
 ## 使用方式
 
-详细使用方式请参考仓库完整README
+详细使用方式请参考log-record仓库文档
 
 https://github.com/qqxx6661/logRecord/blob/master/README.md
 
