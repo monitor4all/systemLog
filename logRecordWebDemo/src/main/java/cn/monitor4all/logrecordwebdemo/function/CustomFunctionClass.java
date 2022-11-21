@@ -8,8 +8,8 @@ import cn.monitor4all.logrecordwebdemo.util.SpringContextUtils;
 /**
  * SpEL自定义函数
  */
-@LogRecordFunc("CustomFuctionClass")
-public class CustomFuctionClass {
+@LogRecordFunc("CustomFunctionClass")
+public class CustomFunctionClass {
 
     private static TestService testService;
 

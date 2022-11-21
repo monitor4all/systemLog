@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 public class TestCustomLogListener implements IOperationLogGetService {
 
     @Override
-    public void createLog(LogDTO logDTO) {
+    public boolean createLog(LogDTO logDTO) {
         log.info("TestCustomLogListener 本地接收到日志 [{}]", logDTO);
+        return true;
     }
 }
