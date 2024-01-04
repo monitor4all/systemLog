@@ -5,42 +5,34 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.1</version>
+        <version>3.2.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <groupId>cn.monitor4all</groupId>
-    <artifactId>logRecordWebDemo</artifactId>
-    <version>1.0.0</version>
-    <name>logRecordWebDemo</name>
-    <description>logRecordWebDemo</description>
-
+    <artifactId>logRecordSpringBoot3</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>logRecordSpringBoot3</name>
+    <description>logRecordSpringBoot3</description>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
     <dependencies>
-        <!--   应用基础依赖    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <!--   log-record    -->
         <dependency>
             <groupId>cn.monitor4all</groupId>
-            <artifactId>log-record-starter</artifactId>
+            <artifactId>log-record-springboot3-starter</artifactId>
             <version>1.6.0-SNAPSHOT</version>
-        </dependency>
-        <!--   应用其他依赖    -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>4.9.2</version>
         </dependency>
     </dependencies>
 
@@ -49,14 +41,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>

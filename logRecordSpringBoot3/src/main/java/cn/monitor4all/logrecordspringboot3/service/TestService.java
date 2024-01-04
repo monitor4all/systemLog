@@ -1,8 +1,8 @@
-package cn.monitor4all.logrecordwebdemo.service;
+package cn.monitor4all.logrecordspringboot3.service;
 
 import cn.monitor4all.logRecord.annotation.OperationLog;
 import cn.monitor4all.logRecord.context.LogRecordContext;
-import cn.monitor4all.logrecordwebdemo.domain.TestClass;
+import cn.monitor4all.logrecordspringboot3.domain.TestClass;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,8 +12,8 @@ public class TestService {
      * 测试OperationLog
      */
     @OperationLog(bizId = "#testClass.testId", bizType = "'testType1'", msg = "#CustomFunctionClass_customFunction(#testClass.testId)")
-    @OperationLog(bizId = "#testClass.testId", bizType = "'testType2'", msg = "'单纯的字符串'")
-    @OperationLog(bizId = "#testClass.testId", bizType = "'testType3'", msg = "'用户将旧值' + #old + '更改为新值' + #testClass.testStr")
+    @OperationLog(bizId = "#testClass.testId", bizType = "'testType3'", msg = "'单纯的字符串'")
+    @OperationLog(bizId = "#testClass.testId", bizType = "'testType4'", msg = "'用户将旧值' + #old + '更改为新值' + #testClass.testStr")
     public String testServiceFunc1(TestClass testClass, boolean isSuccess) throws Exception {
         LogRecordContext.putVariable("old", "oldValue");
         if (isSuccess) {
