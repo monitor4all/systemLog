@@ -30,7 +30,7 @@
         <dependency>
             <groupId>cn.monitor4all</groupId>
             <artifactId>log-record-starter</artifactId>
-            <version>1.6.0</version>
+            <version>1.6.2-SNAPSHOT</version>
         </dependency>
         <!--   应用其他依赖    -->
         <dependency>
